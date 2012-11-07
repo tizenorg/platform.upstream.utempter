@@ -1,0 +1,30 @@
+--- utempter-0.5.5/utempter.c	
++++ utempter-0.5.5/utempter.c	
+@@ -89,6 +89,7 @@ int main(int argc, const char ** argv) {
+     int i;
+     struct stat sb;
+     char * id;
++    struct timeval tv;
+  
+     if (argc < 3) usage();
+ 
+@@ -116,6 +117,9 @@ int main(int argc, const char ** argv) {
+ 	host = NULL;
+     }
+ 
++    memset(&tv, 0, sizeof(tv));
++    (void) gettimeofday(&tv, 0);
++
+     memset(&utx, 0, sizeof(utx));
+     if (add)
+ 	utx.ut_type = USER_PROCESS;
+@@ -152,7 +156,8 @@ int main(int argc, const char ** argv) {
+ 
+     strncpy(utx.ut_id, id, sizeof(utx.ut_id));
+ 
+-    gettimeofday(&utx.ut_tv, NULL);
++    utx.ut_tv.tv_sec = tv.tv_sec;
++    utx.ut_tv.tv_usec = tv.tv_usec;
+ 
+     pututxline(&utx);
+     updwtmpx(_PATH_WTMP, &utx);

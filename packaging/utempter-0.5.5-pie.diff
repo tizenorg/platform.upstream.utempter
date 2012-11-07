@@ -1,0 +1,15 @@
+--- Makefile
++++ Makefile	2005/06/20 11:16:24
+@@ -21,6 +21,12 @@
+ %.os : %.c
+ 	$(CC) -c $(CFLAGS) -fPIC $< -o $@
+ 
++%.o : %.c
++	$(CC) -c $(CFLAGS) -fpie $< -o $@
++
++utempter: utempter.o
++	$(CC) -o $@ -pie $^
++
+ install:
+ 	mkdir -p $(RPM_BUILD_ROOT)/usr/sbin
+ 	mkdir -p $(RPM_BUILD_ROOT)/$(LIBDIR)

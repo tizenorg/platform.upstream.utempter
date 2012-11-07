@@ -1,0 +1,47 @@
+--- utempter-0.5.5/Makefile.eal3	2004-08-05 11:33:17.000000000 +0200
++++ utempter-0.5.5/Makefile	2004-08-05 11:34:06.000000000 +0200
+@@ -25,9 +25,11 @@
+ 	mkdir -p $(RPM_BUILD_ROOT)/usr/sbin
+ 	mkdir -p $(RPM_BUILD_ROOT)/$(LIBDIR)
+ 	mkdir -p $(RPM_BUILD_ROOT)/usr/include
++	mkdir -p $(RPM_BUILD_ROOT)/usr/share/man/man8
+ 	install -m 4755 utempter $(RPM_BUILD_ROOT)/usr/sbin
+ 	install -m 644 utempter.h $(RPM_BUILD_ROOT)/usr/include
+ 	install -m 644 $(SHAREDLIB) $(RPM_BUILD_ROOT)/$(LIBDIR)/$(SHAREDLIB).$(VERSION)
++	install -c -m 644 utempter.8 $(RPM_BUILD_ROOT)/usr/share/man/man8/utempter.8
+ 	ln -sf $(SHAREDLIB).$(VERSION) $(RPM_BUILD_ROOT)/$(LIBDIR)/$(SHAREDLIB)
+ 
+ $(SHAREDLIB): utmpintf.os
+--- utempter-0.5.5/utempter.8.eal3	1970-01-01 01:00:00.000000000 +0100
++++ utempter-0.5.5/utempter.8	2003-11-18 09:01:43.000000000 +0100
+@@ -0,0 +1,30 @@
++.\" Copyright (C) 2003 International Business Machines Corporation
++.\" Author: Emily Ratliff <ratliff@austin.ibm.com>
++.\" This file is distributed according to the GNU General Public License.
++.\"
++.TH "UTEMPTER" 8 "2003-03-21" "" "Linux System Administrator's Manual"
++.SH NAME
++utempter \- privileged helper program for utmp/wtmp updates
++.SH "SYNOPSIS"
++\fButempter\fR \-a \fIslave-device-name\fR  \fIhost\fR
++.sp
++\fButempter\fR \-d \fIslave-device-name\fR
++.SH "DESCRIPTION"
++.B utempter
++is a privileged helper program that writes utmp/wtmp entries for unprivileged 
++programs. 
++
++.SH "OPTIONS"
++The following options are supported:
++.IP "\fB-a \fIslave-device-name host\fR
++add an entry to the utmp/wtmp file
++.IP "\fB\-d \fIslave-device-name\fR 
++delete an entry from the utmp file
++
++.SH "RETURN VALUE"
++On success, 0 is returned. 
++On error, 1 is returned.
++
++.SH "SEE ALSO"
++.BR utmp (5), 
++.BR utmpname (3)
