@@ -21,6 +21,12 @@ clean:
 %.os : %.c
 	$(CC) -c $(CFLAGS) -fPIC $< -o $@
 
+%.o : %.c
+	$(CC) -c $(CFLAGS) -fpie $< -o $@
+
+utempter: utempter.o
+	$(CC) -o $@ -pie $^
+
 install:
 	mkdir -p $(RPM_BUILD_ROOT)/usr/sbin
 	mkdir -p $(RPM_BUILD_ROOT)/$(LIBDIR)
