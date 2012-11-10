@@ -31,9 +31,11 @@ install:
 	mkdir -p $(RPM_BUILD_ROOT)/usr/sbin
 	mkdir -p $(RPM_BUILD_ROOT)/$(LIBDIR)
 	mkdir -p $(RPM_BUILD_ROOT)/usr/include
+	mkdir -p $(RPM_BUILD_ROOT)/usr/share/man/man8
 	install -m 4755 utempter $(RPM_BUILD_ROOT)/usr/sbin
 	install -m 644 utempter.h $(RPM_BUILD_ROOT)/usr/include
 	install -m 644 $(SHAREDLIB) $(RPM_BUILD_ROOT)/$(LIBDIR)/$(SHAREDLIB).$(VERSION)
+	install -c -m 644 utempter.8 $(RPM_BUILD_ROOT)/usr/share/man/man8/utempter.8
 	ln -sf $(SHAREDLIB).$(VERSION) $(RPM_BUILD_ROOT)/$(LIBDIR)/$(SHAREDLIB)
 
 $(SHAREDLIB): utmpintf.os
