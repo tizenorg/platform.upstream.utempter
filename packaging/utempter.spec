@@ -7,6 +7,7 @@ Summary:        A privileged helper for utmp and wtmp updates
 Group:          Productivity/Security
 Source:         utempter-%{version}.tar.gz
 Source2:        baselibs.conf
+Source1001: 	utempter.manifest
 
 %description
 Utempter is a utility that allows non-privileged applications such as
@@ -25,6 +26,7 @@ package contains the development files needed.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 make %{?_smp_mflags} RPM_OPT_FLAGS="%{optflags}" CC="gcc"
@@ -40,6 +42,7 @@ chmod 755 $DESTDIR%{_libdir}/libutempter.so*
 %postun -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(444,root,root,755)
 %doc COPYING
 %attr(02755, root, %{utmpGroup}) /usr/sbin/utempter
@@ -47,6 +50,7 @@ chmod 755 $DESTDIR%{_libdir}/libutempter.so*
 %attr(444,root,root) %doc /usr/share/man/man8/*
 
 %files devel
+%manifest %{name}.manifest
 %defattr(444,root,root,755)
 %attr(555,root,root) %{_libdir}/libutempter.so
 %attr(444,root,root) /usr/include/utempter.h
