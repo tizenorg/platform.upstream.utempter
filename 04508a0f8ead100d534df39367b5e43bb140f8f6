@@ -1,0 +1,8 @@
+Change-Id: I04508a0f8ead100d534df39367b5e43bb140f8f6
+Code-Review+2: Ryan Ware <ware@linux.intel.com>
+Verified+1: Ryan Ware <ware@linux.intel.com>
+Submitted-by: Ryan Ware <ware@linux.intel.com>
+Submitted-at: Mon, 08 Jul 2013 09:39:28 -0700
+Reviewed-on: https://review.tizen.org/gerrit/4900
+Project: platform/upstream/utempter
+Branch: refs/heads/tizen
