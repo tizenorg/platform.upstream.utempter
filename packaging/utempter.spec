@@ -1,7 +1,7 @@
 Name:           utempter
 %define utmpGroup utmp
 Version:        0.5.5
-Release:        152
+Release:        0
 License:        MIT
 Summary:        A privileged helper for utmp and wtmp updates
 Group:          Productivity/Security
