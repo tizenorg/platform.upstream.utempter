@@ -18,7 +18,7 @@ setuid root.
 License:        MIT
 Summary:        Development files for utempter
 Group:          Development/Libraries/C and C++
-Requires:       %{name} = %{version}
+Requires:       %{name} = %{version}-%{release}
 
 %description devel
 Utempter is a privileged helper for utmp and wtmp updates.  This
@@ -54,5 +54,3 @@ chmod 755 $DESTDIR%{_libdir}/libutempter.so*
 %defattr(444,root,root,755)
 %attr(555,root,root) %{_libdir}/libutempter.so
 %attr(444,root,root) /usr/include/utempter.h
-
-%changelog
